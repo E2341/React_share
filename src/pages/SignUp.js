@@ -24,7 +24,7 @@ export default function SignUp() {
     },
   });
 
-  console.log(formik)
+  
 
   const signupStyled = styles();
 
