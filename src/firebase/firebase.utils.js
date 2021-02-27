@@ -24,9 +24,19 @@ class Firebase {
     }
 
         //register
+        register(email, password) {
+            this.firebaseAuth.createUserWithEmailAndPassword(email, password)
+        }
+
         //login
+
+
         //logout
+
+
         //fotgot password
+
+
         //sign in with gogle
 
 }
