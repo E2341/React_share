@@ -27,6 +27,11 @@ export default function SignUp() {
   console.log(formik)
 
   const signupStyled = styles();
+
+  const handleGoogleButtonClick = () => {
+    firebase.useGoogleProvider();
+  };
+
   return (
     <Container  className={signupStyled.wrappper} maxWidth="sm">
       <form onSubmit={formik.handleSubmit}>
@@ -70,7 +75,7 @@ export default function SignUp() {
           color="primary"
           fullWidth 
           >
-            SUBMIT
+            Register
           </Button>
         </Grid>
         <Grid item xs={12}>
@@ -78,6 +83,7 @@ export default function SignUp() {
           variant="contained" 
           color="primary"
           fullWidth
+          onClick = {handleGoogleButtonClick}
           >
             SIGNUP WITH GOOGLE
           </Button>

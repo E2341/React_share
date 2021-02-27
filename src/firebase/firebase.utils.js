@@ -28,6 +28,14 @@ class Firebase {
             this.firebaseAuth.createUserWithEmailAndPassword(email, password)
         }
 
+        //sign in with gogle
+        useGoogleProvider() {
+            const googleProvider = new firebase.auth.GoogleAuthProvider();
+            googleProvider.setCustomParameters({ prompt : "select_account"});
+            this.firebaseAuth.signInWithPopup(googleProvider);
+        }
+        
+        
         //login
 
 
@@ -37,7 +45,6 @@ class Firebase {
         //fotgot password
 
 
-        //sign in with gogle
 
 }
 export default new Firebase()
