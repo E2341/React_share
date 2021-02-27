@@ -1,13 +1,9 @@
-import SignUp from "./pages/SignUp"
-import Navbar from "./components/Navbar"
-import SignIn from "./pages/SignIn"
+import AppRouter from "./Router/Router"
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
-      {/* <SignUp /> */}
-      <SignIn />
+      <AppRouter />
     </div>
   );
 }
