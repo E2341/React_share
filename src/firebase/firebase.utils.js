@@ -40,6 +40,9 @@ class Firebase {
 
 
         //logout
+        signOut () {
+            this.firebaseAuth.signOut();
+        }
 
 
         //fotgot password
