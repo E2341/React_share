@@ -23,7 +23,9 @@ export default function SignIn() {
   };
 
   const handleFormSubmit = (values) => {
-    alert(JSON.stringify(values, null, 2));
+    // alert(JSON.stringify(values, null, 2));
+    firebase.signIn(values.email, values.password);
+
   };
 
   return (
@@ -63,7 +65,7 @@ export default function SignIn() {
                   color="primary"
                   fullWidth
                 >
-                  Register
+                  Login
                 </Button>
               </Grid>
               <Grid item xs={12}>

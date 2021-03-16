@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -39,9 +39,9 @@ export default function Navbar() {
     setAnchorEl(null);
   };
 
-  const handleSignOut = () => {
+  const handleSignOut = useCallback(() => {
     firebase.signOut();
-  };
+  }, []);
 
   return (
     <div className={classes.root}>
@@ -54,7 +54,7 @@ export default function Navbar() {
           <Typography variant="h6" className={classes.title}>
             React Share
           </Typography>
-          {auth && (
+          {currentUser && (
             <div>
               <IconButton
                 aria-label="account of current user"
