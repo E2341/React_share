@@ -20,7 +20,7 @@ export default function SignUp() {
     },
     onSubmit: (values) => {
      // alert(JSON.stringify(values, null, 2));
-     firebase.register(values.email, values.password);
+     firebase.register(values.displayName, values.email, values.password);
     },
   });
 

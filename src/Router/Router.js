@@ -10,7 +10,7 @@ function AppRouter() {
         <Navbar />
         <Switch>
           <Route path="/register" component={SignUp}/>
-          <Route path="/signin" component={SignIn}/>
+          <Route path="/login" component={SignIn}/>
         </Switch>
       </Router>
     );
