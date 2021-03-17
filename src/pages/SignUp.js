@@ -57,7 +57,7 @@ export default function SignUp() {
           variant="outlined" 
           fullWidth
           value={formik.values.email}
-            onChange={formik.handleChange}
+          onChange={formik.handleChange}
           />
         </Grid>
         <Grid item xs={12}>
