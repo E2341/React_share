@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import { Container  } from "@material-ui/core";
 import axios from 'axios';
+import MediaCard from "../components/MediaCard"
 
 
 const styles = makeStyles((theme) => ({
@@ -36,11 +37,21 @@ function Main() {
       fetchData();
       
     }, []);
-
-    console.log(userList);
       
     return  <Container className={mainStyled.wrappper} maxWidth="sm"> 
-            MAIN PAGE    
+            {userList?.map((user) => {
+              return (
+                <MediaCard 
+                  key={user?.id}
+                  userImage={user?.picture}
+                  userName={`${user?.title} ${user?.firstName} ${user?.lastName}`}
+                  userEmail={user?.email}
+                  
+                />
+                
+              );
+
+            })}    
             </Container>
 }
 
