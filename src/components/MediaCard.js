@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -7,6 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
@@ -17,17 +19,14 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MediaCard({userImage, userName, userEmail}) {
+export default function MediaCard({ id, userImage, userName, userEmail }) {
   const classes = useStyles();
+  const history = useHistory();
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={userImage}
-          
-        />
+      <CardActionArea onClick={() => history.push(`/user/${id}`)} >
+        <CardMedia className={classes.media} image={userImage} />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {userName}
@@ -48,3 +47,10 @@ export default function MediaCard({userImage, userName, userEmail}) {
     </Card>
   );
 }
+
+MediaCard.propTypes = {
+  id: PropTypes.string.isRequired,
+  userImage: PropTypes.string,
+  userName: PropTypes.string,
+  userEmail: PropTypes.string,
+};

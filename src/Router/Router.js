@@ -1,8 +1,9 @@
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import Main from "../pages/Main"
-import SignUp from "../pages/SignUp"
-import Navbar from "../components/Navbar"
-import SignIn from "../pages/SignIn"
+import Main from "../pages/Main";
+import SignUp from "../pages/SignUp";
+import UserDetail from "../pages/UserDetail"
+import Navbar from "../components/Navbar";
+import SignIn from "../pages/SignIn";
 
 function AppRouter() {
     return (
@@ -11,6 +12,7 @@ function AppRouter() {
         <Switch>
           <Route exact path="/register" component={SignUp}/>
           <Route exact path="/login" component={SignIn}/>
+          <Route exact path="/user/:id" component={UserDetail}/>
           <Route path="/" component={Main}/>
         </Switch>
       </Router>
