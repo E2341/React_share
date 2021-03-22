@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { fetchData } from "../helper/FetchData"
+import { fetchData } from "../helper/FetchData";
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { Container } from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
+import { format as formatDate, parseISO } from "date-fns";
 
 
 
@@ -37,11 +38,13 @@ function UserDetail() {
     
     return <Container className={mainStyled.wrappper} > 
                 {JSON.stringify(userDetail)}
-                <img src={userDetail.picture} alt="user"/> 
-                <Typography variant="h4" >{userDetail.firstName}</Typography>
-                <Typography variant="h4" >{userDetail.lastName}</Typography>
-                <Typography variant="h4" >{userDetail.registreDetail}</Typography>
-                <Typography variant="h4" >{userDetail.phone}</Typography>
+                <img src={userDetail?.picture} alt="user"/> 
+                <Typography variant="h4" >{userDetail?.firstName}</Typography>
+                <Typography variant="h4" >{userDetail?.lastName}</Typography>
+                { userDetail?.redisterDate && <Typography variant="h4" >
+                    {formatDate(parseISO(userDetail.redisterDate), "MM/dd/yyyy")}
+                    </Typography> }
+                <Typography variant="h4" >{userDetail?.phone}</Typography>
             </Container>
                 
 }
