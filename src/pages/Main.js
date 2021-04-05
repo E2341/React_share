@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from "@material-ui/core/styles";
-import { Container, capitalize  } from "@material-ui/core";
+import { Container, capitalize, Grid, CircularProgress } from "@material-ui/core";
 import axios from 'axios';
 import MediaCard from "../components/MediaCard";
-import Grid from '@material-ui/core/Grid';
+
 
 
 const styles = makeStyles((theme) => ({
@@ -40,12 +40,11 @@ function Main() {
     }, []);
       
     return  <Container className={mainStyled.wrappper} > 
-            <Grid container spacing={3}>
-
-
-           
-
-            {userList?.map((user) => {
+            {!userList ? (
+              <CircularProgress />
+            ) : (
+              <Grid container spacing={1}>
+              {userList?.map((user) => {
               return (
                 <Grid item sm={4} xs={6} key={user?.id}>
                   <MediaCard 
@@ -60,6 +59,9 @@ function Main() {
 
             })}  
              </Grid>  
+            )}
+
+            
             </Container>
             
 }
