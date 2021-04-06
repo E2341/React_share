@@ -6,6 +6,7 @@ import UserDetail from "../pages/UserDetail"
 import Navbar from "../components/Navbar";
 import SignIn from "../pages/SignIn";
 import { FirebaseAuthContext } from '../Context/AuthContext';
+import ForgotPassword from "../pages/ForgotPassword";
 
 
 function AppRouter() {
@@ -17,6 +18,7 @@ function AppRouter() {
         <Switch>
           <Route exact path="/register" component={SignUp}/>
           <Route exact path="/login" component={SignIn}/>
+          <Route exact path="/forgot-password" component={ForgotPassword}/>
           <Route exact path="/user/:id" component={currentUser ? UserDetail : SignIn}/>
           <Route path="/" component={Main}/>
         </Switch>

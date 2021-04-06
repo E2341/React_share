@@ -4,12 +4,14 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import HomeIcon from "@material-ui/icons/Home";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { FirebaseAuthContext } from '../Context/AuthContext';
 import firebase from "../firebase/firebase.utils";
+import { useHistory } from "react-router-dom";
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -28,12 +30,21 @@ export default function Navbar() {
   const { currentUser } = useContext(FirebaseAuthContext);
 
   const classes = useStyles();
-  const [auth, setAuth] = React.useState(true);
+  const history = useHistory();
+
+  // const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  
+  const handleHomeClick = useCallback(() => {
+    history.push(`/`);
+  }, []);
+
+
+
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -48,8 +59,14 @@ export default function Navbar() {
       
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
+          <IconButton 
+          edge="start" 
+          className={classes.menuButton} 
+          color="inherit" 
+          aria-label="menu"
+          onClick={handleHomeClick}
+          >
+            <HomeIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             React Share

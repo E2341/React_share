@@ -49,8 +49,13 @@ class Firebase {
         
         
         //login
-        signIn(email, password) {
-            this.firebaseAuth.signInWithEmailAndPassword(email, password)
+        async signIn(email, password) {
+            try {
+                await this.firebaseAuth.signInWithEmailAndPassword(email, password);
+            } catch (error){
+                return  customErrorHandler(error)
+            }
+            
         }
 
 
@@ -61,7 +66,14 @@ class Firebase {
 
 
         //fotgot password
-
+        async forgotPassword(email) {
+            try {
+                await this.firebaseAuth.sendPasswordResetEmail(email);
+            } catch (error){
+                return  customErrorHandler(error)
+            }
+            
+        }
 
 
 }
