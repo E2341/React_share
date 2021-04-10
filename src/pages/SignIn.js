@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, TextField, Grid, Container, Avatar, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import firebase from "../firebase/firebase.utils";
@@ -32,7 +32,8 @@ const initialValues = {
   password: "",
 };
 
-export default function SignIn() {
+function SignIn() {
+  const [loginError,setLoginError]=useState(null)
   const signinStyled = styles();
 
   const handleGoogleButtonClick = () => {
@@ -41,7 +42,9 @@ export default function SignIn() {
 
   const handleFormSubmit = (values) => {
     // alert(JSON.stringify(values, null, 2));
-    firebase.signIn(values.email, values.password);
+    firebase.signIn(values.email, values.password).then(res=>{
+      res? setLoginError(res):setLoginError(null)
+      });
 
   };
 
@@ -110,9 +113,13 @@ export default function SignIn() {
                 </Button>
               </Grid>
             </Grid>
+            <p style={{textAlign:"center",color:"red"}}><small>{loginError}</small></p>
           </form>
         )}
       </Formik>
     </Container>
   );
 }
+
+
+export default SignIn;

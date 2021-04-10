@@ -1,7 +1,6 @@
-
-
 import firebase from "firebase/app";
 import "firebase/auth";
+import { customErrorHandler } from "../helper/customErrorHandler";
 
 
 const devConfig = {
@@ -69,6 +68,7 @@ class Firebase {
         async forgotPassword(email) {
             try {
                 await this.firebaseAuth.sendPasswordResetEmail(email);
+                window.location.href = "/";
             } catch (error){
                 return  customErrorHandler(error)
             }

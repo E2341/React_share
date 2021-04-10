@@ -8,14 +8,16 @@ import MediaCard from "../components/MediaCard";
 
 const styles = makeStyles((theme) => ({
     wrappper: {
-      marginTop: "10rem",
-      height: "calc(100vh - 19.0625rem)",
-      textAlign: "center"
+      display:'flex',
+      flexDirection:'column',
+      minHeight: '100vh',
+      marginTop: "5rem",
+      textAlign: "center",
     },
     avatar: {
       margin: "1rem auto",
-      backgroundColor: theme.palette.secondary.main
-    }
+      backgroundColor: theme.palette.secondary.main,
+    },
   }));
 
 
