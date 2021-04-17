@@ -46,11 +46,11 @@ export default function MediaCard({ id, userImage, userName, userEmail }) {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          view full profile
+      <CardActions  >
+        <Button size="small" color="primary" onClick={() => history.push(`/user/${id}`)} >
+          View Full Profile
         </Button>
-        <Button size="small" color="primary">
+        <Button size="small" color="primary" onClick={() => history.push(`/user/${id}/post`)}>
           User Posts
         </Button>
       </CardActions>

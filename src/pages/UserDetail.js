@@ -25,7 +25,6 @@ const styles = makeStyles((theme) => ({
  function UserDetail() {
     const { id }= useParams();
     const mainStyled = styles();
-    console.log(id)
 
 
     const [userDetail, setUserDetail] = useState();

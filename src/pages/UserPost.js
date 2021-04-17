@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { fetchData } from "../helper/FetchData";
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import { Container, CircularProgress  } from "@material-ui/core";
-import Typography from '@material-ui/core/Typography';
+import { Container, CircularProgress, Grid } from "@material-ui/core";
 import { formatDateFunc } from "../helper/FormatDate"
+import UserPostCard from "../components/UserPostCard";
 
 
 
@@ -23,14 +23,14 @@ const styles = makeStyles((theme) => ({
 
 
  function UserPost() {
-    const { id } = useParams;
+    const { id } = useParams();
     const mainStyled = styles();
 
 
     const [userPost, setUserPost] = useState();
     useEffect(() => {
-        fetchData(`/user/${id}`)
-        .then((res) => setUserPost(res))
+        fetchData(`/user/${id}/post`)
+        .then((res) => setUserPost(res?.data))
         .catch()
         .finally();
    
@@ -39,18 +39,28 @@ const styles = makeStyles((theme) => ({
     
     return (
       <Container className={mainStyled.wrappper}> 
-            {!userPost ? (
-        <CircularProgress />
-      ) : (
-        <React.Fragment>
-          <img src={userPost?.picture} alt="user" />
-          <Typography variant="h4">{userPost?.firstName}</Typography>
-          <Typography variant="h4">{userPost?.lastName}</Typography>
-          {userPost?.registerDate && (
-            <Typography variant="h4">{formatDateFunc(userPost)}</Typography>
-          )}
-          <Typography variant="h4">{userPost?.phone}</Typography>
-        </React.Fragment>
+        {!userPost ? (
+          <CircularProgress />
+        ) : (
+          <Grid container spacing={1}>
+            {userPost?.map((post) => {
+              const { firstName, lastName } = post.owmer;
+              console.log(post.owner)
+              return (
+                <Grid item sm={4} xs={6} key={post?.id}>
+                <UserPostCard
+                  userInitial={firstName[0]}
+                  title={`${firstName} ${lastName}`}
+                  subheader={formatDateFunc(post.publishDate)}
+                  imgSrc={post.image}
+                  description={post.text}
+                  likes={post.likes}
+                  />
+                  </Grid>
+            );
+
+          })}
+        </Grid>
       )}     
         </Container>
                       
