@@ -22,16 +22,15 @@ const styles = makeStyles((theme) => ({
   }));
 
 
- function UserDetail() {
-    const { id }= useParams();
+ function UserPost() {
+    const { id } = useParams;
     const mainStyled = styles();
-    console.log(id)
 
 
-    const [userDetail, setUserDetail] = useState();
+    const [userPost, setUserPost] = useState();
     useEffect(() => {
         fetchData(`/user/${id}`)
-        .then((res) => setUserDetail(res))
+        .then((res) => setUserPost(res))
         .catch()
         .finally();
    
@@ -40,17 +39,17 @@ const styles = makeStyles((theme) => ({
     
     return (
       <Container className={mainStyled.wrappper}> 
-            {!userDetail ? (
+            {!userPost ? (
         <CircularProgress />
       ) : (
         <React.Fragment>
-          <img src={userDetail?.picture} alt="user" />
-          <Typography variant="h4">{userDetail?.firstName}</Typography>
-          <Typography variant="h4">{userDetail?.lastName}</Typography>
-          {userDetail?.registerDate && (
-            <Typography variant="h4">{formatDateFunc(userDetail)}</Typography>
+          <img src={userPost?.picture} alt="user" />
+          <Typography variant="h4">{userPost?.firstName}</Typography>
+          <Typography variant="h4">{userPost?.lastName}</Typography>
+          {userPost?.registerDate && (
+            <Typography variant="h4">{formatDateFunc(userPost)}</Typography>
           )}
-          <Typography variant="h4">{userDetail?.phone}</Typography>
+          <Typography variant="h4">{userPost?.phone}</Typography>
         </React.Fragment>
       )}     
         </Container>
@@ -61,4 +60,4 @@ const styles = makeStyles((theme) => ({
   }
                
 
-export default UserDetail;
+export default UserPost;

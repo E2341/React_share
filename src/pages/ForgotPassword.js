@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, TextField, Grid, Container, Avatar, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import firebase from "../firebase/firebase.utils";
@@ -29,7 +29,8 @@ const initialValues = {
   email: "",
 };
 
-export default function ForgotPassword() {
+function ForgotPassword() {
+   const [loginError, setLoginError] = useState(null);
   const forgotPasswordStyled = styles();
 
   const handleGoogleButtonClick = () => {
@@ -74,20 +75,7 @@ export default function ForgotPassword() {
                   
                 />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  name="password"
-                  label="Password"
-                  variant="outlined"
-                  type="password"
-                  fullWidth
-                  value={values.password}
-                  onChange={handleChange}
-                  error={errors.password}
-                  helperText={errors.password}
-                  
-                />
-              </Grid>
+              
               <Grid item xs={12}>
                 <Button
                   type="submit"
@@ -98,20 +86,15 @@ export default function ForgotPassword() {
                   Submit
                 </Button>
               </Grid>
-              <Grid item xs={12}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                  onClick={handleGoogleButtonClick}
-                >
-                  
-                </Button>
-              </Grid>
             </Grid>
+             <p style={{ textAlign: "center", color: "red" }}>
+              <small>{loginError}</small>
+            </p>
           </form>
         )}
       </Formik>
     </Container>
   );
 }
+
+export default ForgotPassword;
