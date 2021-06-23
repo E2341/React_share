@@ -28,6 +28,8 @@ const styles = makeStyles((theme) => ({
 
 
     const [userPost, setUserPost] = useState();
+    
+
     useEffect(() => {
         fetchData(`/user/${id}/post`)
         .then((res) => setUserPost(res?.data))
@@ -35,7 +37,8 @@ const styles = makeStyles((theme) => ({
         .finally();
    
     }, [id]);
-        
+      
+    
     
     return (
       <Container className={mainStyled.wrappper}> 
@@ -44,17 +47,19 @@ const styles = makeStyles((theme) => ({
         ) : (
           <Grid container spacing={1}>
             {userPost?.map((post) => {
-              const { firstName, lastName } = post.owmer;
-              console.log(post.owner)
+              const { firstName, lastName} = post.owner;
+              
               return (
                 <Grid item sm={4} xs={6} key={post?.id}>
                 <UserPostCard
+                  id={post.id}
                   userInitial={firstName[0]}
                   title={`${firstName} ${lastName}`}
                   subheader={formatDateFunc(post.publishDate)}
                   imgSrc={post.image}
                   description={post.text}
                   likes={post.likes}
+                  
                   />
                   </Grid>
             );

@@ -6,6 +6,8 @@ import MediaCard from "../components/MediaCard";
 
 
 
+
+
 const styles = makeStyles((theme) => ({
     wrappper: {
       display:'flex',
@@ -41,7 +43,8 @@ function Main() {
       
     }, []);
       
-    return  <Container className={mainStyled.wrappper} > 
+    return ( 
+      <Container className={mainStyled.wrappper} > 
             {!userList ? (
               <CircularProgress />
             ) : (
@@ -65,6 +68,7 @@ function Main() {
 
             
             </Container>
+    );
             
 }
 

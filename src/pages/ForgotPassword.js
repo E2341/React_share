@@ -38,7 +38,8 @@ function ForgotPassword() {
   };
 
   const handleFormSubmit = (values) => {
-      firebase.ForgotPassword(values.email).then((res) => {
+      firebase.forgotPassword(values.email).then((res) => {
+      
           
     });
 };

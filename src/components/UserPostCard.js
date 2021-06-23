@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -10,10 +10,12 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { fetchData } from "../helper/FetchData";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,12 +47,22 @@ export default function UserPostCard({
     imgSrc, 
     imgTitle, 
     description,
-    likes }) {
+    likes,
+}) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [comments, setComments] = useState();
 
-  const handleExpandClick = () => {
+  const handleExpandClick = (postId) => {
+    if (!expanded) getComments(postId);
     setExpanded(!expanded);
+  };
+
+  const getComments = (postId) => {
+    fetchData(`/post/${postId}/comment`)
+    .then((res) => setComments(res?.data))
+    .catch()
+    .finally();
   };
 
   return (
@@ -90,7 +102,7 @@ export default function UserPostCard({
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
           })}
-          onClick={handleExpandClick}
+          onClick={() => handleExpandClick()}
           aria-expanded={expanded}
           aria-label="show more"
         >
@@ -99,11 +111,22 @@ export default function UserPostCard({
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-            {/*
-                //TODO: map components
-            */}
-          <Typography paragraph>Method:</Typography>
-         
+          { !comments ? (
+
+          <CircularProgress />
+
+        ) : comments.length ? ( 
+          comments.map((comment) => {
+            return (
+              <Typography paragraph key={comment.id}>
+                {comment.message}
+              </Typography>
+            );
+          })
+         ) : ( "No comment"
+
+          )}
+           
         </CardContent>
       </Collapse>
     </Card>

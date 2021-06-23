@@ -109,7 +109,7 @@ function SignIn() {
                   fullWidth
                   onClick={handleGoogleButtonClick}
                 >
-                  SIGNUP WITH GOOGLE
+                  SIGNIN WITH GOOGLE
                 </Button>
               </Grid>
             </Grid>

@@ -70,7 +70,7 @@ class Firebase {
                 await this.firebaseAuth.sendPasswordResetEmail(email);
                 window.location.href = "/";
             } catch (error){
-                return  customErrorHandler(error)
+                return  customErrorHandler(error);
             }
             
         }
@@ -78,4 +78,4 @@ class Firebase {
 
 }
 
-export default new Firebase()
+export default new Firebase();
