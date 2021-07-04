@@ -111,19 +111,27 @@ export default function UserPostCard({
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          { !comments ? (
+          {!comments ? (
 
           <CircularProgress />
 
         ) : comments.length ? ( 
           comments.map((comment) => {
             return (
-              <Typography paragraph key={comment.id}>
+              <React.Fragment  key={comment.id}>
+              <Typography variant="body2">
+                {comment.owner.firstName}
+              </Typography>
+              <Typography paragraph>
                 {comment.message}
               </Typography>
+              <hr />
+              </React.Fragment>
             );
           })
-         ) : ( "No comment"
+         ) : ( 
+           
+          "No comment"
 
           )}
            

@@ -47,7 +47,7 @@ const styles = makeStyles((theme) => ({
           <Typography variant="h4">{userDetail?.firstName}</Typography>
           <Typography variant="h4">{userDetail?.lastName}</Typography>
           {userDetail?.registerDate && (
-            <Typography variant="h4">{formatDateFunc(userDetail)}</Typography>
+            <Typography variant="h4">{formatDateFunc(userDetail.registerDate)}</Typography>
           )}
           <Typography variant="h4">{userDetail?.phone}</Typography>
         </React.Fragment>
